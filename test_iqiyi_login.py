@@ -1,3 +1,9 @@
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+print sys.getdefaultencoding()
+
+
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
@@ -39,11 +45,21 @@ driver.find_element_by_xpath('//*[@id="passwd"]').send_keys("005448")
 driver.save_screenshot('s3.png')
 time.sleep(5)
 driver.find_element_by_xpath('/html/body/div[1]/div/div[2]/form/div/div[2]/div/p/a[1]').click()
+time.sleep(5)
+driver.find_element_by_xpath('//input[@tabindex="3"][@node-type="vcode"]').send_keys("005448")
+time.sleep(5)
+driver.save_screenshot('s3_1.png')
+
+
+html = driver.find_element_by_xpath("//*").get_attribute("outerHTML")
+driver.save_screenshot('s3_2.png')
 
 print 'has login'
-time.sleep(10)
+time.sleep(20)
 driver.switch_to_window(driver.window_handles[0])
 driver.refresh()
+#driver.find_element_by_xpath('/html/body/div[2]/div/header/div/div/div[4]/div[6]/div[1]/div/a').perform()
+#//*[@id="block-A"]/div/div/div[4]/div[6]/div[1]/div/a
 time.sleep(30)
 driver.save_screenshot('s4.png')
 
