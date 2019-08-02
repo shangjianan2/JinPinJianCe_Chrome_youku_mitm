@@ -48,6 +48,8 @@ driver.find_element_by_xpath('/html/body/div[1]/div/div[2]/form/div/div[2]/div/p
 time.sleep(5)
 driver.find_element_by_xpath('//input[@tabindex="3"][@node-type="vcode"]').send_keys("005448")
 time.sleep(5)
+pincode = driver.find_element_by_xpath('//img[@node-type="pincode"]')
+pincode.screenshot('pincode.png')
 driver.save_screenshot('s3_1.png')
 
 
