@@ -22,9 +22,9 @@ def t2s(t):
         return int(m) * 60 + int(s)
 
 url = input("url: ")
-print("please choose definition: 1 1080p, 2 720p, 3 480p, 4 320p")
+print("please choose definition: 1 1080p, 2 720p, 3 480p")
 qixidu = input("please input the num: ")
-video_def = "320p"
+video_def = "480p"
 if(qixidu == 1):
     print("1080p")
     video_def = "1080p"
@@ -34,9 +34,9 @@ elif(qixidu == 2):
 elif(qixidu == 3):
     print("480p")
     video_def = "480p"
-elif(qixidu == 4):
-    print("320p")
-    video_def = "320p"
+#elif(qixidu == 4):
+#    print("320p")
+#    video_def = "320p"
 else:
     print("error")
 
@@ -70,13 +70,12 @@ test_play = video_play_youku(driver)
 #test_play.play('GaoQing')
 test_play.play(video_def)
 
-time.sleep(10)
-driver.save_screenshot('youku_test.png')
 during_second = t2s(driver.find_element_by_xpath('/html/body/div[4]/div[1]/div[1]/div[1]/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[1]/div[3]/span[3]').get_attribute('textContent'))
 print("the total time is %d second\r\n" % (during_second))
 print("the video is playing......\r\n")
 
-time.sleep(during_second)
+time.sleep(during_second - 5)
+driver.save_screenshot('youku_test.png')
 
 driver.close()
 driver.quit()
