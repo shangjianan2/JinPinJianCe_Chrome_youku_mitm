@@ -13,14 +13,6 @@ import time
 import json
 from video_play_youku import *
 
-def t2s(t):
-    if(str(t).count(":") == 2):
-        h,m,s = t.strip().split(":")
-        return int(h) * 3600 + int(m) * 60 + int(s)
-    else:
-        m,s = t.strip().split(":")
-        return int(m) * 60 + int(s)
-
 url = input("url: ")
 print("please choose definition: 1 1080p, 2 720p, 3 480p")
 qixidu = input("please input the num: ")
@@ -70,11 +62,11 @@ test_play = video_play_youku(driver)
 #test_play.play('GaoQing')
 test_play.play(video_def)
 
-during_second = t2s(driver.find_element_by_xpath('/html/body/div[4]/div[1]/div[1]/div[1]/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[1]/div[3]/span[3]').get_attribute('textContent'))
-print("the total time is %d second\r\n" % (during_second))
-print("the video is playing......\r\n")
+url_now = driver.current_url
+while(url_now == driver.current_url):
+    time.sleep(1)
 
-time.sleep(during_second - 5)
+
 driver.save_screenshot('youku_test.png')
 
 driver.close()
